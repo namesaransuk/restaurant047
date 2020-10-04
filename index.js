@@ -1,10 +1,11 @@
+const PORT = process.env.PORT || 8080;
 const express = require('express');
 const restaurantRouter = require('./routes/restaurant');
 const indexRouter = require('./routes/index');
 const hbs = require('express-handlebars');
-const path = require('path');
 const app = express();
 
+const path = require('path');
 app.use(express.static(path.join(__dirname,'public')));
 
 //Middleware เพื่ออ่าน req.body (ไว้ต่อจากแอพเพื่อทำทีละ step)
@@ -23,6 +24,9 @@ app.use('/',indexRouter);
 //     res.send('<h1>RESTFul API</h1>');
 // });
 
-app.listen(3000, ()=>{
-    console.log('Listen to port 3000');
-});
+app.listen(
+    PORT,
+    () => {
+        console.log(`Listening to port ${PORT}`);
+    }
+); 
